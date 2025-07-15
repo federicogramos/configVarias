@@ -20,6 +20,8 @@
 	"workbench.colorCustomizations": {
 	"editorIndentGuide.background1": "#101010",
 	"editorIndentGuide.activeBackground1": "#FFFFFF",
-	}
+	},
+
+	"editor.cursorWidth": 3
 }
 
