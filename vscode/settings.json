@@ -1,6 +1,7 @@
 {
 	"editor.insertSpaces": false,
 	"editor.tabSize": 4,
+	"editor.cursorWidth": 3,
 	
 	"editor.minimap.enabled": false,
 	"editor.rulers": [80],
@@ -20,8 +21,6 @@
 	"workbench.colorCustomizations": {
 	"editorIndentGuide.background1": "#101010",
 	"editorIndentGuide.activeBackground1": "#FFFFFF",
-	},
-
-	"editor.cursorWidth": 3
+	}
 }
 
