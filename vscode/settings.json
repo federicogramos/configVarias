@@ -19,8 +19,8 @@
 	// Controls whether the editor should render indent guides.
 	"editor.guides.indentation": true,
 	"workbench.colorCustomizations": {
-	"editorIndentGuide.background1": "#101010",
-	"editorIndentGuide.activeBackground1": "#FFFFFF",
+		"editorIndentGuide.background1": "#101010",
+		"editorIndentGuide.activeBackground1": "#FFFFFF",
 	}
 }
 
