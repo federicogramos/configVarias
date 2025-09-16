@@ -21,6 +21,17 @@
 	"workbench.colorCustomizations": {
 		"editorIndentGuide.background1": "#101010",
 		"editorIndentGuide.activeBackground1": "#FFFFFF",
-	}
+	},
+	"workbench.activityBar.location": "hidden",
+
+	// Solo para windows.
+	"terminal.integrated.profiles.windows": {
+		"Git Bash": {
+			"path": "C:\\Program Files\\Git\\bin\\bash.exe",
+			"args": ["--login"],
+			"icon": "terminal-bash"
+		}
+	},
+	"terminal.integrated.defaultProfile.windows": "Git Bash"
 }
 
