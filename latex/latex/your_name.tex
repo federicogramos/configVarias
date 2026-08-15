@@ -1,0 +1,109 @@
+%===============================================================================
+% Formato generico que se arma para pdf | @file /informe_latex/tp1.tex
+%===============================================================================
+% Estructura de archivos necesaria para armar este .tex:
+
+% -- 0000_0000.tex				// Intro variable.
+% -- 0000_0001.tex				// Intro variable.
+%    ...						// Intro variable.
+% -- 0000_00NN.tex				// Intro variable.
+
+% -- 0001_enunciado_0000.tex	// Enunciado.
+% -- 0001_answer_0000.tex		// Respuesta.
+% -- 0001_answer_0001.tex		// Respuesta.
+% -- 0001_answer_0002.tex		// Respuesta.
+% -- 0001_answer_0003.tex		// Respuesta.
+
+% -- 0002_enunciado_0000.tex	// Enunciado.
+% -- 0002_answer_0000.tex		// Respuesta.
+
+% ...etc...
+%===============================================================================
+
+
+\documentclass[a4paper,11pt]{extarticle}
+\input{preamble}
+\input{format}
+
+
+% Completar metadatos.
+
+\hypersetup{
+	pdftitle = {MAySC | TP Final | Diseño e Implementación de un IP Core ALU para Sistemas en Basados en Zynq},
+	pdfauthor = {Federico Ramos},
+	hidelinks % Evita que aparezcan recuadros de colores en los links de tu índice o tablas
+}
+
+\begin{document}
+
+
+% Intro variable desde 0000_0000 hasta 0000_0099 maximo.
+
+\foreach \n in {0, ..., 99} {
+
+	% Genera el padding de ceros de forma nativa en LaTeX
+	\ifnum\n<10
+		\edef\i{000\n}
+	\else
+		\edef\i{00\n}
+	\fi
+
+	\IfFileExists{../ipynb.out/0000_\i.tex}{
+		\input{../ipynb.out/0000_\i.tex}
+	}
+}
+
+
+% Pares Enunciado + Respuestas
+
+\foreach \n in {0, ..., 99} {
+
+	% Genera el padding de ceros de forma nativa en LaTeX
+	\ifnum\n<10
+		\edef\i{000\n}
+	\else
+		\edef\i{00\n}
+	\fi
+
+	\gdef\imprimio_enunciado{0} % Inicializar el flag como "falso" para la iteración actual de \n
+
+
+	% enunciado
+	\foreach \j in {0, ..., 99} {
+
+	% Padding de 4 dígitos para la respuesta (\k)
+		\ifnum\j<10
+			\edef\k{000\j}%
+		\else
+			\edef\k{00\j}%
+		\fi
+
+		\IfFileExists{../ipynb.out/\i_enunciado_\k.tex}{
+			\input{../ipynb.out/\i_enunciado_\k.tex}
+		\gdef\imprimio_enunciado{1} % Si entra aquí, al menos un enunciado existe. Activamos el flag globalmente.
+		}
+	}
+
+	% Verificar el flag antes de procesar las respuestas.
+	\ifnum\imprimio_enunciado=1
+
+		% answer
+		\foreach \j in {0, ..., 99} {
+
+		% Padding de 4 dígitos para la respuesta (\k)
+			\ifnum\j<10
+				\edef\k{000\j}%
+			\else
+				\edef\k{00\j}%
+			\fi
+
+			\IfFileExists{../ipynb.out/\i_answer_\k.tex}{
+				\input{../ipynb.out/\i_answer_\k.tex}
+			}
+		}
+	\fi
+}
+
+\end{document}
+
+

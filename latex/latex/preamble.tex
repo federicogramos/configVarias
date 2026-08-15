@@ -1,0 +1,183 @@
+%%==============================================================================
+%% Varios formatos | @file /informe_latex/preamble.tex
+%%==============================================================================
+%% Lo que podria querer configurar:
+%% -- graphicspath
+%%==============================================================================
+
+
+% document parameters
+\usepackage[spanish, es-tabla]{babel}
+
+% Uso margenes top y bottom para ajuste si quiero una cantidad de hojas.
+\usepackage[vmargin = 1.9cm, hmargin = 2.1cm]{geometry}
+
+
+% fgr
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+
+% Packages for math
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{esint}
+
+% Packages for writing
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{framed}
+\usepackage{csquotes}
+
+% Miscellaneous packages
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{xcolor}
+
+\usepackage{xcolor}
+\usepackage{colortbl} % <-- AGREGA ESTA LÍNEA DEBAJO DE XCOLOR
+
+\usepackage{multicol}
+\usepackage{subcaption}
+\usepackage{caption}
+
+\usepackage[output-decimal-marker={,},
+per-mode=symbol-or-fraction,
+retain-unity-mantissa=true,
+detect-all,
+range-phrase={ -- },
+list-final-separator={ y }
+]{siunitx}
+
+% Para imagenes usar path por defecto:
+% <latex_fig src="02_perfil.png" cap="Error regresión lineal." lbl="fig:error"/>
+\usepackage{graphicx}
+\graphicspath{{../img/}}
+\captionsetup{format = hang, margin = 10pt, font = small, labelfont = bf}
+
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage[many]{tcolorbox}
+
+% Citation
+\usepackage[round, authoryear]{natbib}
+
+% Hyperlinks setup
+\usepackage{hyperref}
+\definecolor{links}{rgb}{0.36,0.54,0.66}
+\hypersetup{
+	colorlinks = true,
+	linkcolor = black,
+	urlcolor = blue,
+	citecolor = blue,
+	filecolor = blue,
+	pdfauthor = {Author},
+	pdftitle = {Title},
+	pdfsubject = {subject},
+	pdfkeywords = {one, two},
+	pdfproducer = {LaTeX},
+	pdfcreator = {pdfLaTeX},
+}
+
+% Colores para las tablas.
+\definecolor{tableHeaderColor}{rgb}{0.88, 0.88, 0.88}
+\definecolor{tableColor}{rgb}{0.93, 0.93, 0.93}
+
+% Para codigo.
+\definecolor{pyKeyword}{rgb}{0.0, 0.5, 0.0}     % Verde para def, import, in
+\definecolor{pyLib}{rgb}{0.75, 0.45, 0.0}       % Marrón/Naranja para tus variables y np
+\definecolor{pyFunc}{rgb}{0.0, 0.35, 0.75}      % Azul para funciones analíticas
+\definecolor{pyString}{rgb}{0.7, 0.1, 0.1}      % Rojo para textos
+\definecolor{pyComment}{rgb}{0.4, 0.4, 0.4}     % Gris para comentarios
+\definecolor{pyBrackets}{rgb}{0.75, 0.3, 0.65}
+\definecolor{pyNumbers}{rgb}{0.3, 0.75, 0.3}     % Verde claro para números (Estilo VS Code)
+
+\definecolor{codeBlockColor}{rgb}{0.93, 0.93, 0.93}
+
+\lstset{
+language=Python,               
+basicstyle=\ttfamily\small,
+columns=fixed,                 
+basewidth=0.475em,             
+breaklines=true,
+backgroundcolor=\color{codeBlockColor}, 
+frame=single,
+rulecolor=\color[rgb]{0, 0, 0}, 
+postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
+showstringspaces=false,
+% 1. Sintaxis base de Python
+keywordstyle=\color{pyKeyword}\bfseries,
+commentstyle=\color{pyComment}\itshape,
+stringstyle=\color{pyString},
+% -------------------------------------------------------------
+% FORCE CON ENFASIS: Colorea funciones analíticas sin importar los puntos
+emph={polyfit, log, copy, print, len, range, plot, where, diff, argmin, max, min, mean, sqrt, exp, linspace, savefig, xlabel, ylabel, xlim, ylim, grid, legend, show},
+emphstyle=\color{pyFunc}\bfseries,
+% -------------------------------------------------------------
+% FORCE CON ENFASIS: Colorea alias de librerías y dataframes principales
+emph={[2]np, pd, plt},
+emphstyle={[2]\color{pyLib}\bfseries},
+% -------------------------------------------------------------
+% LITERATE: Mapeo exhaustivo para forzar la colorización de paréntesis cerrados
+literate=*{[}{{\textcolor{pyBrackets}{[}}}1
+			{]}{{\textcolor{pyBrackets}{]}}}1
+			{\{}{{\textcolor{pyBrackets}{\{}}}1
+			{\}}{{\textcolor{pyBrackets}{\}}}}1
+}
+
+% Silenciar la advertencia de conflicto entre siunitx y physics
+\ExplSyntaxOn
+\msg_redirect_name:nnn {siunitx} {physics-pkg} {none}
+\ExplSyntaxOff
+
+% fgr
+\captionsetup{hypcap=false}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Ajuste del margen de maniobra tipográfico
+\emergencystretch=3em  % Espacio extra de emergencia si una línea no calza bien
+%\tolerance=2000        % Permite mayor estiramiento antes de dar una advertencia
+%\hfuzz=2pt             % Ignora advertencias si el desborde es menor a 2pt (~0.7 mm)
+\hbadness=10000        % Silencia TODAS las advertencias de Underfull \hbox (espaciado estirado)
+%\vbadness=10000        % Silencia las advertencias de Underfull \vbox (espacio vertical suelto)
+
+\usepackage{pgffor} % Asegurate de tener esto en tu preámbulo
+
+% REDEFINICIÓN DE CAPTION PARA FIGURAS
+\addto\captionsspanish{\renewcommand{\figurename}{Imagen}}
+
+\usepackage{microtype} % Para angostar fuente de secciones de codigo.
+
+% =========================================================================
+% BLOQUE DE PRUEBA DE COLORES - SOLUCIÓN DEFINITIVA SINCRO
+% =========================================================================
+\usepackage{etoolbox}
+
+% Para tablas, padding
+% 1. Global Horizontal Padding control (Default is usually 6pt)
+\setlength{\tabcolsep}{4pt} 
+% 2. Fix for Nested Headers padding buildup
+\usepackage{array}
+\newcommand{\headercell}[1]{\begin{tabular}{@{}c@{}}#1\end{tabular}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% =============================================================================
+% Configuración Global de Notas al Pie con Formato [1]
+% =============================================================================
+\makeatletter
+% Ponemos corchetes al número de llamada en el texto principal
+\renewcommand\@makefnmark{\hbox{\@textsuperscript{\normalfont[\@thefnmark]}}}
+
+% Ponemos corchetes y alineamos el número abajo en el pie de página
+\renewcommand\@makefntext[1]{%
+    \parindent 1em%
+    \noindent
+    \hb@xt@1.8em{\hss\normalfont[\@thefnmark]}#1}
+\makeatother
+
+\usepackage{mathtools} % Activa \xRightarrow de forma nativa

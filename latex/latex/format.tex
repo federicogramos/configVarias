@@ -1,0 +1,34 @@
+%%==============================================================================
+%% Estilo de la hoja | @file /informe_latex/format.tex
+%%==============================================================================
+
+
+% Adjust spacing after the chapter title.
+\titlespacing*{\chapter}{0cm}{-2.0cm}{0.50cm}
+\titlespacing*{\section}{0cm}{0.50cm}{0.25cm}
+
+% Indent 
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1ex}
+
+\newtcolorbox{problem}{
+	enhanced,
+	colback = black!5,
+	coltitle = black,
+	boxrule = 0pt,
+	frame hidden,
+	borderline west = {0.5mm}{0.0mm}{black},
+	fontupper = \normalfont,
+	title = {},
+	breakable,
+	before skip = 3ex,
+	after skip = 3ex
+}
+\tcbuselibrary{skins, breakable}
+
+% Ajuste global para listas (acorta el tabulador horizontal).
+\setlist[itemize]{
+	leftmargin = 2.5em,  % Distancia desde el margen izquierdo general hasta el texto
+	labelsep = 0.5em,    % Distancia entre el puntito/cuadradito y el texto
+	itemindent = 0pt     % Alineación base del ítem
+}
