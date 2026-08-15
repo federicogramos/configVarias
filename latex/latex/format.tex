@@ -2,6 +2,10 @@
 %% Estilo de la hoja | @file /informe_latex/format.tex
 %%==============================================================================
 
+% Creamos una variable y guardamos de forma limpia el parskip actual (los 10ex)
+\newlength{\parskipGlobal}
+\setlength{\parskipGlobal}{1ex}
+
 
 % Adjust spacing after the chapter title.
 \titlespacing*{\chapter}{0cm}{-2.0cm}{0.50cm}
@@ -9,7 +13,8 @@
 
 % Indent 
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{1ex}
+\setlength{\parskip}{\parskipGlobal}
+
 
 \newtcolorbox{problem}{
 	enhanced,
@@ -22,7 +27,10 @@
 	title = {},
 	breakable,
 	before skip = 3ex,
-	after skip = 3ex
+	after skip = 3ex,
+	%
+	% Lee dinámicamente el parskip global actual (1ex) y lo fija al inicio del texto interno
+	before upper = {\setlength{\parskip}{\parskipGlobal}}
 }
 \tcbuselibrary{skins, breakable}
 
