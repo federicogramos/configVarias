@@ -87,47 +87,193 @@ list-final-separator={ y }
 \definecolor{tableHeaderColor}{rgb}{0.88, 0.88, 0.88}
 \definecolor{tableColor}{rgb}{0.93, 0.93, 0.93}
 
-% Para codigo.
-\definecolor{pyKeyword}{rgb}{0.0, 0.5, 0.0}     % Verde para def, import, in
-\definecolor{pyLib}{rgb}{0.75, 0.45, 0.0}       % Marrón/Naranja para tus variables y np
-\definecolor{pyFunc}{rgb}{0.0, 0.35, 0.75}      % Azul para funciones analíticas
-\definecolor{pyString}{rgb}{0.7, 0.1, 0.1}      % Rojo para textos
-\definecolor{pyComment}{rgb}{0.4, 0.4, 0.4}     % Gris para comentarios
-\definecolor{pyBrackets}{rgb}{0.75, 0.3, 0.65}
-\definecolor{pyNumbers}{rgb}{0.3, 0.75, 0.3}     % Verde claro para números (Estilo VS Code)
 
+
+
+
+
+
+
+
+%==============================================================================
+% CONFIGURACIÓN MULTILENGUAJE PREMIUM CORRIGIDA (Python, Verilog, C)
+%==============================================================================
+
+% Fondo y bordes comunes (Suavizados estilo VS Code Light)
 \definecolor{codeBlockColor}{rgb}{0.93, 0.93, 0.93}
+\definecolor{cComment}{rgb}{0.25, 0.5, 0.35}     % Verde comentarios estilizado
+\definecolor{cString}{rgb}{0.65, 0.15, 0.15}     % Rojo ladrillo para textos
+\definecolor{cBrackets}{rgb}{0.45, 0.25, 0.65}   % Violeta para llaves/corchetes
+\definecolor{cOperators}{rgb}{0.7, 0.3, 0.0}      % Naranja quemado para operadores
+\definecolor{cNumbers}{rgb}{0.15, 0.55, 0.75}    % Azul/Cian para literales numéricos
 
+% Paleta Python
+\definecolor{pyKeyword}{rgb}{0.0, 0.3, 0.7}      % Azul VS Code para control de flujo
+\definecolor{pyLib}{rgb}{0.7, 0.4, 0.0}         % Naranja/Marrón para paquetes
+\definecolor{pyFunc}{rgb}{0.5, 0.1, 0.6}        % Púrpura para métodos analíticos
+
+% Paleta Verilog
+\definecolor{vlogKeyword}{rgb}{0.0, 0.0, 0.8}    % Azul puro estructural
+\definecolor{vlogType}{rgb}{0.0, 0.5, 0.6}       % Cian oscuro para tipos de datos
+\definecolor{vlogGate}{rgb}{0.7, 0.1, 0.5}       % Magenta para primitivas y assign
+
+% Paleta C
+\definecolor{cLangKeyword}{rgb}{0.65, 0.0, 0.55}  % Púrpura intenso de flujo
+\definecolor{cLangType}{rgb}{0.0, 0.45, 0.65}     % Azul de datos
+
+% Paleta Bash corregida (Modificá este color a tu gusto)
+\definecolor{shPrompt}{rgb}{0.00,0.48,0.18}       % Verde brillante (Cambiá este RGB para probar colores)
+\definecolor{shKeyword}{rgb}{0.0, 0.3, 0.7}       % Azul VS Code para comandos (como 'set')
+\definecolor{shNormal}{rgb}{0, 0, 0}     % Color para argumentos y variables comunes ('a', 'b')
+
+% Configuración base compartida
 \lstset{
-language=Python,               
-basicstyle=\ttfamily\small,
-columns=fixed,                 
-basewidth=0.475em,             
-breaklines=true,
-backgroundcolor=\color{codeBlockColor}, 
-frame=single,
-rulecolor=\color[rgb]{0, 0, 0}, 
-postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
-showstringspaces=false,
-% 1. Sintaxis base de Python
-keywordstyle=\color{pyKeyword}\bfseries,
-commentstyle=\color{pyComment}\itshape,
-stringstyle=\color{pyString},
-% -------------------------------------------------------------
-% FORCE CON ENFASIS: Colorea funciones analíticas sin importar los puntos
-emph={polyfit, log, copy, print, len, range, plot, where, diff, argmin, max, min, mean, sqrt, exp, linspace, savefig, xlabel, ylabel, xlim, ylim, grid, legend, show},
-emphstyle=\color{pyFunc}\bfseries,
-% -------------------------------------------------------------
-% FORCE CON ENFASIS: Colorea alias de librerías y dataframes principales
-emph={[2]np, pd, plt},
-emphstyle={[2]\color{pyLib}\bfseries},
-% -------------------------------------------------------------
-% LITERATE: Mapeo exhaustivo para forzar la colorización de paréntesis cerrados
-literate=*{[}{{\textcolor{pyBrackets}{[}}}1
-			{]}{{\textcolor{pyBrackets}{]}}}1
-			{\{}{{\textcolor{pyBrackets}{\{}}}1
-			{\}}{{\textcolor{pyBrackets}{\}}}}1
+    basicstyle=\ttfamily\small,
+    columns=fixed,                 
+    basewidth=0.475em,             
+    breaklines=true,
+    backgroundcolor=\color{codeBlockColor}, 
+    frame=single,
+    rulecolor=\color[rgb]{0.25, 0.25, 0.25}, 
+    postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
+    showstringspaces=false,
+    commentstyle=\color{cComment}\itshape,
+    stringstyle=\color{cString},
+    tabsize=4,       
+    keepspaces=true, 
 }
+
+% ESTILO: PYTHON
+\lstdefinestyle{estiloPython}{
+    language=Python,               
+    keywordstyle=\color{pyKeyword}\bfseries,
+    morekeywords={def, class, return, if, elif, else, while, for, in, import, from, as, try, except, with, lambda, global},
+    emph={polyfit, log, copy, print, len, range, plot, where, diff, argmin, max, min, mean, sqrt, exp, linspace, savefig, xlabel, ylabel, xlim, ylim, grid, legend, show, int, float, str, list, dict, append, open, read, write},
+    emphstyle=\color{pyFunc}\bfseries,
+    emph={[2]np, pd, plt, numpy, pandas, matplotlib},
+    emphstyle={[2]\color{pyLib}\bfseries},
+    literate=*{[}{{\textcolor{cBrackets}{[}}}1
+			{]}{{\textcolor{cBrackets}{]}}}1
+			{\{}{{\textcolor{cBrackets}{\{}}}1
+			{\}}{{\textcolor{cBrackets}{\}}}}1
+            {=}{{\textcolor{cOperators}{=}}}1
+            {+}{{\textcolor{cOperators}{+}}}1
+            {-}{{\textcolor{cOperators}{-}}}1
+            {0}{{\textcolor{cNumbers}{0}}}1
+            {1}{{\textcolor{cNumbers}{1}}}1
+            {2}{{\textcolor{cNumbers}{2}}}1
+            {3}{{\textcolor{cNumbers}{3}}}1
+            {4}{{\textcolor{cNumbers}{4}}}1
+            {5}{{\textcolor{cNumbers}{5}}}1
+            {6}{{\textcolor{cNumbers}{6}}}1
+            {7}{{\textcolor{cNumbers}{7}}}1
+            {8}{{\textcolor{cNumbers}{8}}}1
+            {9}{{\textcolor{cNumbers}{9}}}1
+}
+
+% ESTILO: VERILOG
+\lstdefinestyle{estiloVerilog}{
+    language=Verilog,               
+    keywordstyle=\color{vlogKeyword}\bfseries,
+    morekeywords={module, endmodule, always, begin, end, case, endcase, default, if, else, initial, generate, endgenerate},
+    emph={wire, reg, input, output, inout, integer, parameter, localparam, supply0, supply1, genvar},
+    emphstyle=\color{vlogType}\bfseries,
+    emph={[2]assign, deassign, force, release, and, nand, or, nor, xor, xnor, not, buf},
+    emphstyle={[2]\color{vlogGate}\bfseries},
+    literate=*{[}{{\textcolor{cBrackets}{[}}}1
+            {]}{{\textcolor{cBrackets}{]}}}1
+            {\{}{{\textcolor{cBrackets}{\{}}}1
+            {\}}{{\textcolor{cBrackets}{\}}}}1
+            {=}{{\textcolor{cOperators}{=}}}1
+            {<}{{\textcolor{cOperators}{<}}}1
+            {>}{{\textcolor{cOperators}{>}}}1
+            {&}{{\textcolor{cOperators}{\&}}}1
+            {|}{{\textcolor{cOperators}{|}}}1
+            {+}{{\textcolor{cOperators}{+}}}1
+            {-}{{\textcolor{cOperators}{-}}}1
+            {'b}{{\textcolor{cNumbers}{'b}}}2
+            {'h}{{\textcolor{cNumbers}{'h}}}2
+            {'d}{{\textcolor{cNumbers}{'d}}}2
+            {'o}{{\textcolor{cNumbers}{'o}}}2
+            {0}{{\textcolor{cNumbers}{0}}}1
+            {1}{{\textcolor{cNumbers}{1}}}1
+            {2}{{\textcolor{cNumbers}{2}}}1
+            {3}{{\textcolor{cNumbers}{3}}}1
+            {4}{{\textcolor{cNumbers}{4}}}1
+            {5}{{\textcolor{cNumbers}{5}}}1
+            {6}{{\textcolor{cNumbers}{6}}}1
+            {7}{{\textcolor{cNumbers}{7}}}1
+            {8}{{\textcolor{cNumbers}{8}}}1
+            {9}{{\textcolor{cNumbers}{9}}}1
+}
+
+% ESTILO: C
+\lstdefinestyle{estiloC}{
+    language=C,
+    keywordstyle=\color{cLangKeyword}\bfseries,
+    morekeywords={if, else, switch, case, default, break, continue, for, while, do, return, goto, sizeof},
+    emph={int, float, double, char, void, size_t, uint8_t, uint16_t, uint32_t, int8_t, int16_t, int32_t, struct, typedef, union, enum, volatile, register, static, extern, const},
+    emphstyle=\color{cLangType}\bfseries,
+    literate=*{[}{{\textcolor{cBrackets}{[}}}1
+            {]}{{\textcolor{cBrackets}{]}}}1
+            {\{}{{\textcolor{cBrackets}{\{}}}1
+            {\}}{{\textcolor{cBrackets}{\}}}}1
+            {=}{{\textcolor{cOperators}{=}}}1
+            {+}{{\textcolor{cOperators}{+}}}1
+            {-}{{\textcolor{cOperators}{-}}}1
+            {0}{{\textcolor{cNumbers}{0}}}1
+            {1}{{\textcolor{cNumbers}{1}}}1
+            {2}{{\textcolor{cNumbers}{2}}}1
+            {3}{{\textcolor{cNumbers}{3}}}1
+            {4}{{\textcolor{cNumbers}{4}}}1
+            {5}{{\textcolor{cNumbers}{5}}}1
+            {6}{{\textcolor{cNumbers}{6}}}1
+            {7}{{\textcolor{cNumbers}{7}}}1
+            {8}{{\textcolor{cNumbers}{8}}}1
+            {9}{{\textcolor{cNumbers}{9}}}1
+}
+
+
+\lstdefinestyle{estiloBash}{
+    language=bash,               
+    basicstyle=\ttfamily\small\color{shNormal}, % Forzamos el texto base de la terminal
+    keywordstyle=\color{shKeyword}\bfseries,
+    morekeywords={set, if, then, else, elif, fi, for, while, in, do, done},
+    % Desactivamos los números azules globales de tu \lstset restableciéndolos a negro
+    literate=*{0}{{\textcolor{shNormal}{0}}}1
+              {1}{{\textcolor{shNormal}{1}}}1
+              {2}{{\textcolor{shNormal}{2}}}1
+              {3}{{\textcolor{shNormal}{3}}}1
+              {4}{{\textcolor{shNormal}{4}}}1
+              {5}{{\textcolor{shNormal}{5}}}1
+              {6}{{\textcolor{shNormal}{6}}}1
+              {7}{{\textcolor{shNormal}{7}}}1
+              {8}{{\textcolor{shNormal}{8}}}1
+              {9}{{\textcolor{shNormal}{9}}}1
+              % AHORA SÍ: Vinculación real y forzada de tu shPrompt
+              {\$>}{{\textcolor{shPrompt}{\textbf{\$>}}}}2,
+    sensitive=true,
+}
+
+
+% CONFIGURACIÓN POR DEFECTO:
+\lstset{style=estiloVerilog}
+%==============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 % Silenciar la advertencia de conflicto entre siunitx y physics
 \ExplSyntaxOn
@@ -181,3 +327,8 @@ literate=*{[}{{\textcolor{pyBrackets}{[}}}1
 \makeatother
 
 \usepackage{mathtools} % Activa \xRightarrow de forma nativa
+
+\AtBeginDocument{
+    \shorthandoff{"}	% Para que la commilla no genere un comportamiento mas que
+						% sea un caracter como cualquier otro.
+}
