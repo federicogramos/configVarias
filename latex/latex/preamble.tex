@@ -332,3 +332,29 @@ list-final-separator={ y }
     \shorthandoff{"}	% Para que la commilla no genere un comportamiento mas que
 						% sea un caracter como cualquier otro.
 }
+
+
+%%==============================================================================
+%% Números de página formato "Página X de Y"
+%%==============================================================================
+
+\usepackage{fancyhdr}
+\usepackage{atveryend}
+
+\makeatletter
+\AfterLastShipout{\immediate\write\@auxout{\string\newlabel{TotalPages}{{\thepage}{\thepage}}}}
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{} %% Limpia encabezados y pies
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Usamos la etiqueta autogenerada
+\fancyfoot[C]{\small Página \thepage\ de \ref{TotalPages}}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\small Página \thepage\ de \ref{TotalPages}}
+}
