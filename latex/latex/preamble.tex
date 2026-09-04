@@ -9,8 +9,9 @@
 % document parameters
 \usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
 
+% Hoja = A4 => ancho total = 21 cm.
 % Uso margenes top y bottom para ajuste si quiero una cantidad de hojas.
-\usepackage[vmargin = 1.9cm, hmargin = 2.1cm]{geometry}
+\usepackage[vmargin = 1.9cm, hmargin = 2cm]{geometry}
 
 
 % fgr
@@ -358,3 +359,17 @@ list-final-separator={ y }
     \fancyhf{}
     \fancyfoot[C]{\small Página \thepage\ de \ref{TotalPages}}
 }
+
+
+\usepackage{array}
+\usepackage{tabularx}
+
+%% A saber: l (ele minuscula) crea una columna de ancho automático .
+%% Prefijos de estilos de columna. Por Latex, solo puede ser 1 sola letra. Ejemp
+%% lo de uso:
+%% \\begin{{tabularx}}{{\\textwidth}}{{|l c|c l c CX|}}
+\newcolumntype{C}{>{\centering\arraybackslash}}     %% C = Centrado
+\newcolumntype{L}{>{\raggedright\arraybackslash}}   %% L = Izquierda
+\newcolumntype{R}{>{\raggedleft\arraybackslash}}    %% R = Derecha
+
+
