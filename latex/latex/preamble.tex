@@ -9,9 +9,10 @@
 % document parameters
 \usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
 
-% Hoja = A4 => ancho total = 21 cm.
-% Uso margenes top y bottom para ajuste si quiero una cantidad de hojas.
-\usepackage[vmargin = 1.9cm, hmargin = 2cm]{geometry}
+%% Hoja = A4 => ancho total = 21 cm.
+%% Uso margenes top y bottom para ajuste si quiero una cantidad de hojas.
+%%\usepackage[vmargin = 1.9cm, hmargin = 2cm]{geometry} %% Valor estandar.
+\usepackage[vmargin = 1.9cm, hmargin = 1.5cm]{geometry}   %% Valor ajustado.
 
 
 % fgr
@@ -85,8 +86,9 @@ list-final-separator={ y }
 }
 
 % Colores para las tablas.
-\definecolor{tableHeaderColor}{rgb}{0.88, 0.88, 0.88}
-\definecolor{tableColor}{rgb}{0.93, 0.93, 0.93}
+\definecolor{tabColorHdr_085}{rgb}{0.86,0.86,0.86}
+\definecolor{tabColorHdr_080}{rgb}{0.8,0.8,0.8}
+\definecolor{tabColor}{rgb}{0.93, 0.93, 0.93}
 
 
 
@@ -340,11 +342,13 @@ list-final-separator={ y }
 %%==============================================================================
 
 \usepackage{fancyhdr}
-\usepackage{atveryend}
 
-\makeatletter
-\AfterLastShipout{\immediate\write\@auxout{\string\newlabel{TotalPages}{{\thepage}{\thepage}}}}
-\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\usepackage{atveryend}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\AfterLastShipout{\immediate\write\@auxout{\string\newlabel{TotalPages}{{\thepage}{\thepage}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\makeatother
+
+\usepackage{lastpage} % Paquete que calcula el total de paginas.
 
 \pagestyle{fancy}
 \fancyhf{} %% Limpia encabezados y pies
@@ -353,11 +357,14 @@ list-final-separator={ y }
 \renewcommand{\footrulewidth}{0pt}
 
 % Usamos la etiqueta autogenerada
-\fancyfoot[C]{\small Página \thepage\ de \ref{TotalPages}}
+%%%%%%%%%%%%%%%%%%%%%%%%\fancyfoot[C]{\small Página \thepage\ de \ref{TotalPages}}
+\fancyfoot[C]{\small Página \thepage\ de \pageref{LastPage}}
 
 \fancypagestyle{plain}{
     \fancyhf{}
-    \fancyfoot[C]{\small Página \thepage\ de \ref{TotalPages}}
+    %%%%%%%%%%%%%%%%%%%%%\fancyfoot[C]{\small Página \thepage\ de \ref{TotalPages}}
+    \fancyfoot[C]{\small Página \thepage\ de \pageref{LastPage}}
+
 }
 
 
@@ -372,4 +379,10 @@ list-final-separator={ y }
 \newcolumntype{L}{>{\raggedright\arraybackslash}}   %% L = Izquierda
 \newcolumntype{R}{>{\raggedleft\arraybackslash}}    %% R = Derecha
 
+% Con parámetros de tamaño. Ejemplo de uso:
+%% \begin{tabularx}{\textwidth}{|X|X|W{1.8cm}|}
+\newcolumntype{D}[1]{>{\centering\arraybackslash}p{#1}}     %% D = Cent ancho fijo.
+\newcolumntype{E}[1]{>{\raggedright\arraybackslash}p{#1}}   %% E = Izq ancho fijo.
+\newcolumntype{F}[1]{>{\raggedleft\arraybackslash}p{#1}}    %% F = Der ancho fijo.
 
+\usepackage{multirow}
