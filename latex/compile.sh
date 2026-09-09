@@ -25,7 +25,7 @@ IPYNB="${BASE_NAME}.ipynb" ## Archivos q deben existir para compilación.
 TEX="${BASE_NAME}.tex"
 
 echo "Directorio de trabajo = $SCRIPT_DIR"
-echo "Archivo de partida   = $IPYNB"
+echo "Archivo de partida = $IPYNB"
 
 ## -B : Desactiva la creación automática de carpetas __pycache__ y archivos .pyc
 ## -u : Fuerza la salida en tiempo real (Unbuffered), obligando a Git Bash a mostrar todo ya mismo
