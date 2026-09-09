@@ -5,6 +5,7 @@
 ## re como el basename del .tex).
 ##==============================================================================
 
+
 ## Busca el unico archivo .ipynb en dir actual.
 IPYNB_FILE=$(find . -maxdepth 1 -name "*.ipynb" -printf "%f\n" 2>/dev/null | head -n 1)
 
