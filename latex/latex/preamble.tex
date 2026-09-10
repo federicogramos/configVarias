@@ -291,7 +291,8 @@ list-final-separator={ y }
     % COLOREADO DE LÍNEAS COMPLETAS (Ahora sí van a mantener su color propio)
     morecomment=[f][\color{diffAddText}\bfseries]{+},   
     morecomment=[f][\color{diffDelText}]{-},           
-    morecomment=[f][\color{pyKeyword}\itshape]{@@},    
+    %morecomment=[f][\color{pyKeyword}\itshape]{@@},    
+    moredelim=[s][\color{pyKeyword}\itshape]{@@}{@@},
 }
 
 % CONFIGURACIÓN POR DEFECTO:
