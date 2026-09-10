@@ -264,38 +264,35 @@ list-final-separator={ y }
     sensitive=true,
 }
 
-% ESTILO: DIFF DEFINITIVO (Signos totalmente visibles y líneas coloreadas)
+% ESTILO: DIFF
+
+% "sueltos" para inyectarles gris, dejando intactos los morecomment de línea.
+\makeatletter
+\lst@AddToHook{OutputOther}{\color{black!45}}
+\lst@AddToHook{OutputIdent}{\color{black!45}} % Asegura también letras comunes
+\makeatother
+
+% Tu definición de estilo limpia y nativa:
 \lstdefinestyle{estiloDiff}{
-    language={},         % Desactiva el lenguaje base
-    % --------------------------------------------------------------------------
-    % RESET DE HERENCIA: Reseteamos todo lo que metió el estilo Verilog global
+    language={},         
     keywordstyle=,
-    commentstyle=,       % Evita conflictos con otros comentarios
+    commentstyle=,       
+    stringstyle=,
     emph={},
     emphstyle={},
-    % --------------------------------------------------------------------------
-    basicstyle=\ttfamily\small\color{black}, 
-    keepspaces=true,     % Garantiza que los espacios no colapsen
-    columns=fullflexible, % Evita deformaciones en el ancho de los signos + y -
     %
-    % NÚMEROS EN NEGRO: Mantenemos los números con formato neutro
-    literate={0}{{\textcolor{black}{0}}}1
-             {1}{{\textcolor{black}{1}}}1
-             {2}{{\textcolor{black}{2}}}1
-             {3}{{\textcolor{black}{3}}}1
-             {4}{{\textcolor{black}{4}}}1
-             {5}{{\textcolor{black}{5}}}1
-             {6}{{\textcolor{black}{6}}}1
-             {7}{{\textcolor{black}{7}}}1
-             {8}{{\textcolor{black}{8}}}1
-             {9}{{\textcolor{black}{9}}}1,
+    basicstyle=\ttfamily\small\color{black!45}, 
+    identifierstyle=\color{black!45}, 
+    keepspaces=true,     
+    columns=fullflexible, 
+    extendedchars=true,
+    literate=*, 
     %
-    % USO DE morecomment=[f]: Colorea toda la línea según el primer carácter SIN borrarlo
-    morecomment=[f][\color{diffAddText}\bfseries]{+},   % Línea verde si empieza con +
-    morecomment=[f][\color{diffDelText}]{-},           % Línea roja si empieza con -
-    morecomment=[f][\color{pyKeyword}\itshape]{@@},    % Línea azul si empieza con @@
+    % COLOREADO DE LÍNEAS COMPLETAS (Ahora sí van a mantener su color propio)
+    morecomment=[f][\color{diffAddText}\bfseries]{+},   
+    morecomment=[f][\color{diffDelText}]{-},           
+    morecomment=[f][\color{pyKeyword}\itshape]{@@},    
 }
-
 
 % CONFIGURACIÓN POR DEFECTO:
 \lstset{style=estiloVerilog}
